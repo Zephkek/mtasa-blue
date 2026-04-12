@@ -388,11 +388,8 @@ CVehicleSA::~CVehicleSA()
             DWORD dwThis = (DWORD)m_pInterface;
             DWORD dwFunc = 0x6D2460;  // CVehicle::ExtinguishCarFire
             // clang-format off
-            __asm
-            {
-                mov     ecx, dwThis
-                call    dwFunc
-            }
+            using func_t = void (__thiscall*)(decltype(dwThis) );
+    reinterpret_cast<func_t>(dwFunc)(dwThis);
             // clang-format on
 
             CWorldSA* pWorld = (CWorldSA*)pGame->GetWorld();
@@ -413,12 +410,8 @@ void CVehicleSA::SetMoveSpeed(const CVector& vecMoveSpeed) noexcept
     DWORD dwThis = (DWORD)GetInterface();
     DWORD dwReturn = 0;
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        call    dwFunc
-        mov     dwReturn, eax
-    }
+    using func_t = decltype(dwReturn) (__thiscall*)(decltype(dwThis) );
+dwReturn =     reinterpret_cast<func_t>(dwFunc)(dwThis);
     // clang-format on
     MemCpyFast((void*)dwReturn, &vecMoveSpeed, sizeof(CVector));
 
@@ -629,11 +622,8 @@ void CVehicleSA::SetDerailed(bool bDerailed)
                 // Recalculate the on-rail distance from the start node (train position parameter, m_fTrainRailDistance)
                 DWORD dwFunc = FUNC_CTrain_FindPositionOnTrackFromCoors;
                 // clang-format off
-                __asm
-                {
-                    mov     ecx, dwThis
-                        call    dwFunc
-                }
+                using func_t = void (__thiscall*)(decltype(dwThis) );
+    reinterpret_cast<func_t>(dwFunc)(dwThis);
                 // clang-format on
 
                 // Reset the speed
@@ -752,11 +742,8 @@ void CVehicleSA::SetRailTrack(BYTE ucTrackID)
         {
             DWORD dwFunc = FUNC_CTrain_FindPositionOnTrackFromCoors;
             // clang-format off
-            __asm
-            {
-                mov ecx, pInterf
-                call dwFunc
-            }
+            using func_t = void (__thiscall*)(decltype(pInterf) );
+    reinterpret_cast<func_t>(dwFunc)(pInterf);
             // clang-format on
         }
     }
@@ -778,11 +765,8 @@ void CVehicleSA::SetTrainPosition(float fPosition, bool bRecalcOnRailDistance)
         {
             DWORD dwFunc = FUNC_CTrain_FindPositionOnTrackFromCoors;
             // clang-format off
-            __asm
-            {
-                mov ecx, pInterface
-                call dwFunc
-            }
+            using func_t = void (__thiscall*)(decltype(pInterface) );
+    reinterpret_cast<func_t>(dwFunc)(pInterface);
             // clang-format on
         }
     }
@@ -847,12 +831,8 @@ void CVehicleSA::AddVehicleUpgrade(DWORD dwModelID)
 
         DWORD dwFunc = FUNC_CVehicle_AddVehicleUpgrade;
         // clang-format off
-        __asm
-        {
-            mov     ecx, dwThis
-            push    dwModelID
-            call    dwFunc
-        }
+        using func_t = void (__thiscall*)(decltype(dwThis), decltype(dwModelID));
+    reinterpret_cast<func_t>(dwFunc)(dwThis, dwModelID);
         // clang-format on
     }
 }
@@ -863,12 +843,8 @@ void CVehicleSA::RemoveVehicleUpgrade(DWORD dwModelID)
     DWORD dwFunc = FUNC_CVehicle_RemoveVehicleUpgrade;
 
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        push    dwModelID
-        call    dwFunc
-    }
+    using func_t = void (__thiscall*)(decltype(dwThis), decltype(dwModelID));
+    reinterpret_cast<func_t>(dwFunc)(dwThis, dwModelID);
     // clang-format on
 
     // GTA SA only does this when CVehicle::ClearVehicleUpgradeFlags returns false.
@@ -902,13 +878,8 @@ DWORD CVehicleSA::GetBaseVehicleType()
     DWORD dwReturn = 0;
 
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        call    dwFunc
-        mov     dwReturn, eax
-
-    }
+    using func_t = decltype(dwReturn) (__thiscall*)(decltype(dwThis) );
+dwReturn =     reinterpret_cast<func_t>(dwFunc)(dwThis);
     // clang-format on
 
     return dwReturn;
@@ -951,12 +922,8 @@ bool CVehicleSA::IsUpsideDown()
     bool  bReturn = false;
 
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        call    dwFunc
-        mov     bReturn, al
-    }
+    using func_t = decltype(bReturn) (__thiscall*)(decltype(dwThis) );
+bReturn =     reinterpret_cast<func_t>(dwFunc)(dwThis);
     // clang-format on
 
     return bReturn;
@@ -969,12 +936,8 @@ void CVehicleSA::SetEngineOn(bool bEngineOn)
     DWORD dwFunc = FUNC_CVehicle_SetEngineOn;
 
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        push    dwEngineOn
-        call    dwFunc
-    }
+    using func_t = void (__thiscall*)(decltype(dwThis), decltype(dwEngineOn));
+    reinterpret_cast<func_t>(dwFunc)(dwThis, dwEngineOn);
     // clang-format on
 }
 
@@ -1028,11 +991,8 @@ void CVehicleSA::PlaceBikeOnRoadProperly()
     DWORD dwBike = (DWORD)GetInterface();
 
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwBike
-        call    dwFunc
-    }
+    using func_t = void (__thiscall*)(decltype(dwBike) );
+    reinterpret_cast<func_t>(dwFunc)(dwBike);
     // clang-format on
 }
 
@@ -1042,11 +1002,8 @@ void CVehicleSA::PlaceAutomobileOnRoadProperly()
     DWORD dwAutomobile = (DWORD)GetInterface();
 
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwAutomobile
-        call    dwFunc
-    }
+    using func_t = void (__thiscall*)(decltype(dwAutomobile) );
+    reinterpret_cast<func_t>(dwFunc)(dwAutomobile);
     // clang-format on
 }
 
@@ -1233,11 +1190,8 @@ void CVehicleSA::Fix()
         if (dwFunc)
         {
             // clang-format off
-            __asm
-            {
-                mov     ecx, dwThis
-                call    dwFunc
-            }
+            using func_t = void (__thiscall*)(decltype(dwThis) );
+    reinterpret_cast<func_t>(dwFunc)(dwThis);
             // clang-format on
         }
     }
@@ -1334,12 +1288,8 @@ void CVehicleSA::PickupEntityWithWinch(CEntity* pEntity)
         DWORD dwEntityInterface = (DWORD)pEntitySA->GetInterface();
 
         // clang-format off
-        __asm
-        {
-            push    dwEntityInterface
-            mov     ecx, dwThis
-            call    dwFunc
-        }
+        using func_t = void (__thiscall*)(decltype(dwThis), decltype(dwEntityInterface));
+    reinterpret_cast<func_t>(dwFunc)(dwThis, dwEntityInterface);
         // clang-format on
     }
 }
@@ -1350,11 +1300,8 @@ void CVehicleSA::ReleasePickedUpEntityWithWinch()
     DWORD dwThis = (DWORD)GetInterface();
 
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        call    dwFunc
-    }
+    using func_t = void (__thiscall*)(decltype(dwThis) );
+    reinterpret_cast<func_t>(dwFunc)(dwThis);
     // clang-format on
 }
 
@@ -1364,12 +1311,8 @@ void CVehicleSA::SetRopeHeightForHeli(float fRopeHeight)
     DWORD dwThis = (DWORD)GetInterface();
 
     // clang-format off
-    __asm
-    {
-        push    fRopeHeight
-        mov     ecx, dwThis
-        call    dwFunc
-    }
+    using func_t = void (__thiscall*)(decltype(dwThis), decltype(fRopeHeight));
+    reinterpret_cast<func_t>(dwFunc)(dwThis, fRopeHeight);
     // clang-format on
 }
 
@@ -1380,12 +1323,8 @@ CPhysical* CVehicleSA::QueryPickedUpEntityWithWinch()
 
     CPhysicalSAInterface* phys;
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        call    dwFunc
-        mov     phys, eax
-    }
+    using func_t = decltype(phys) (__thiscall*)(decltype(dwThis) );
+phys =     reinterpret_cast<func_t>(dwFunc)(dwThis);
     // clang-format on
 
     if (phys)
@@ -1401,12 +1340,8 @@ void CVehicleSA::SetRemap(int iRemap)
     DWORD dwFunc = FUNC_CVehicle__SetRemap;
     DWORD dwThis = (DWORD)GetInterface();
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        push    iRemap
-        call    dwFunc
-    }
+    using func_t = void (__thiscall*)(decltype(dwThis), decltype(iRemap));
+    reinterpret_cast<func_t>(dwFunc)(dwThis, iRemap);
     // clang-format on
 }
 
@@ -1416,12 +1351,8 @@ int CVehicleSA::GetRemapIndex()
     DWORD dwThis = (DWORD)GetInterface();
     int   iReturn = 0;
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        call    dwFunc
-        mov     iReturn, eax
-    }
+    using func_t = decltype(iReturn) (__thiscall*)(decltype(dwThis) );
+iReturn =     reinterpret_cast<func_t>(dwFunc)(dwThis);
     // clang-format on
     return iReturn;
 }
@@ -1431,12 +1362,8 @@ void CVehicleSA::SetRemapTexDictionary(int iRemapTextureDictionary)
     DWORD dwFunc = FUNC_CVehicle__SetRemapTexDictionary;
     DWORD dwThis = (DWORD)GetInterface();
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        push    iRemapTextureDictionary
-        call    dwFunc
-    }
+    using func_t = void (__thiscall*)(decltype(dwThis), decltype(iRemapTextureDictionary));
+    reinterpret_cast<func_t>(dwFunc)(dwThis, iRemapTextureDictionary);
     // clang-format on
 }
 
@@ -1603,12 +1530,8 @@ void CVehicleSA::SetTaxiLightOn(bool bLightOn)
     DWORD dwFunc = FUNC_CAutomobile_SetTaxiLight;
 
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        push    dwState
-        call    dwFunc
-    }
+    using func_t = void (__thiscall*)(decltype(dwThis), decltype(dwState));
+    reinterpret_cast<func_t>(dwFunc)(dwThis, dwState);
     // clang-format on
 }
 
@@ -1866,13 +1789,8 @@ bool CVehicleSA::UpdateMovingCollision(float fAngle)
     DWORD dwThis = (DWORD)GetInterface();
     DWORD dwFunc = FUNC_CAutomobile__UpdateMovingCollision;
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        push    fAngle
-        call    dwFunc
-        mov     bReturn, al
-    }
+    using func_t = decltype(bReturn) (__thiscall*)(decltype(dwThis), decltype(fAngle));
+bReturn =     reinterpret_cast<func_t>(dwFunc)(dwThis, fAngle);
     // clang-format on
 
     // Restore our driver
@@ -2098,15 +2016,8 @@ namespace
         {
             DWORD dwFunc = FUNC_CMatrix__ConvertFromEulerAngles;
             // clang-format off
-            __asm
-            {
-                push    iUnknown
-                push    fZ
-                push    fY
-                push    fX
-                mov     ecx, matrixPadded
-                call    dwFunc
-            }
+            using func_t = void (__thiscall*)(decltype(matrixPadded), decltype(fX), decltype(fY), decltype(fZ), decltype(iUnknown));
+    reinterpret_cast<func_t>(dwFunc)(matrixPadded, fX, fY, fZ, iUnknown);
             // clang-format on
         }
     }
@@ -2117,15 +2028,8 @@ namespace
         {
             DWORD dwFunc = FUNC_CMatrix__ConvertToEulerAngles;
             // clang-format off
-            __asm
-            {
-                push    iUnknown
-                push    fZ
-                push    fY
-                push    fX
-                mov     ecx, matrixPadded
-                call    dwFunc
-            }
+            using func_t = void (__thiscall*)(decltype(matrixPadded), decltype(fX), decltype(fY), decltype(fZ), decltype(iUnknown));
+    reinterpret_cast<func_t>(dwFunc)(matrixPadded, fX, fY, fZ, iUnknown);
             // clang-format on
         }
     }
@@ -2586,13 +2490,8 @@ bool CVehicleSA::SetPlateText(const SString& strText)
     DWORD dwFunc = FUNC_CVehicle_CustomCarPlate_TextureCreate;
     bool  bReturn = false;
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        push    pVehicleModelInfo
-        call    dwFunc
-        mov     bReturn, al
-    }
+    using func_t = decltype(bReturn) (__thiscall*)(decltype(dwThis), decltype(pVehicleModelInfo));
+bReturn =     reinterpret_cast<func_t>(dwFunc)(dwThis, pVehicleModelInfo);
     // clang-format on
     return bReturn;
 }
@@ -2617,13 +2516,8 @@ bool CVehicleSA::SetWindowOpenFlagState(unsigned char ucWindow, bool bState)
     bool bReturn = false;
 
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        push    ucWindow
-        call    dwFunc
-        mov     bReturn, al
-    }
+    using func_t = decltype(bReturn) (__thiscall*)(decltype(dwThis), decltype(ucWindow));
+bReturn =     reinterpret_cast<func_t>(dwFunc)(dwThis, ucWindow);
     // clang-format on
     return bReturn;
 }

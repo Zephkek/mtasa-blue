@@ -241,13 +241,8 @@ bool CModelInfoSA::IsBoat()
     DWORD ModelID = m_dwModelID;
     bool  bReturn = false;
     // clang-format off
-    __asm
-    {
-        push    ModelID
-        call    dwFunction
-        mov     bReturn, al
-        add     esp, 4
-    }
+    using func_t = decltype(bReturn) (__cdecl*)(decltype(ModelID));
+bReturn =     reinterpret_cast<func_t>(dwFunction)(ModelID);
     // clang-format on
     return bReturn;
 }
@@ -258,13 +253,8 @@ bool CModelInfoSA::IsCar()
     DWORD ModelID = m_dwModelID;
     bool  bReturn = false;
     // clang-format off
-    __asm
-    {
-        push    ModelID
-        call    dwFunction
-        mov     bReturn, al
-        add     esp, 4
-    }
+    using func_t = decltype(bReturn) (__cdecl*)(decltype(ModelID));
+bReturn =     reinterpret_cast<func_t>(dwFunction)(ModelID);
     // clang-format on
     return bReturn;
 }
@@ -275,13 +265,8 @@ bool CModelInfoSA::IsTrain()
     DWORD ModelID = m_dwModelID;
     bool  bReturn = false;
     // clang-format off
-    __asm
-    {
-        push    ModelID
-        call    dwFunction
-        mov     bReturn, al
-        add     esp, 4
-    }
+    using func_t = decltype(bReturn) (__cdecl*)(decltype(ModelID));
+bReturn =     reinterpret_cast<func_t>(dwFunction)(ModelID);
     // clang-format on
     return bReturn;
 }
@@ -292,13 +277,8 @@ bool CModelInfoSA::IsHeli()
     DWORD ModelID = m_dwModelID;
     bool  bReturn = false;
     // clang-format off
-    __asm
-    {
-        push    ModelID
-        call    dwFunction
-        mov     bReturn, al
-        add     esp, 4
-    }
+    using func_t = decltype(bReturn) (__cdecl*)(decltype(ModelID));
+bReturn =     reinterpret_cast<func_t>(dwFunction)(ModelID);
     // clang-format on
     return bReturn;
 }
@@ -309,13 +289,8 @@ bool CModelInfoSA::IsPlane()
     DWORD ModelID = m_dwModelID;
     bool  bReturn = false;
     // clang-format off
-    __asm
-    {
-        push    ModelID
-        call    dwFunction
-        mov     bReturn, al
-        add     esp, 4
-    }
+    using func_t = decltype(bReturn) (__cdecl*)(decltype(ModelID));
+bReturn =     reinterpret_cast<func_t>(dwFunction)(ModelID);
     // clang-format on
     return bReturn;
 }
@@ -326,13 +301,8 @@ bool CModelInfoSA::IsBike()
     DWORD ModelID = m_dwModelID;
     bool  bReturn = false;
     // clang-format off
-    __asm
-    {
-        push    ModelID
-        call    dwFunction
-        mov     bReturn, al
-        add     esp, 4
-    }
+    using func_t = decltype(bReturn) (__cdecl*)(decltype(ModelID));
+bReturn =     reinterpret_cast<func_t>(dwFunction)(ModelID);
     // clang-format on
     return bReturn;
 }
@@ -343,13 +313,8 @@ bool CModelInfoSA::IsFakePlane()
     DWORD ModelID = m_dwModelID;
     bool  bReturn = false;
     // clang-format off
-    __asm
-    {
-        push    ModelID
-        call    dwFunction
-        mov     bReturn, al
-        add     esp, 4
-    }
+    using func_t = decltype(bReturn) (__cdecl*)(decltype(ModelID));
+bReturn =     reinterpret_cast<func_t>(dwFunction)(ModelID);
     // clang-format on
     return bReturn;
 }
@@ -360,13 +325,8 @@ bool CModelInfoSA::IsMonsterTruck()
     DWORD ModelID = m_dwModelID;
     bool  bReturn = false;
     // clang-format off
-    __asm
-    {
-        push    ModelID
-        call    dwFunction
-        mov     bReturn, al
-        add     esp, 4
-    }
+    using func_t = decltype(bReturn) (__cdecl*)(decltype(ModelID));
+bReturn =     reinterpret_cast<func_t>(dwFunction)(ModelID);
     // clang-format on
     return bReturn;
 }
@@ -377,13 +337,8 @@ bool CModelInfoSA::IsQuadBike()
     DWORD ModelID = m_dwModelID;
     bool  bReturn = false;
     // clang-format off
-    __asm
-    {
-        push    ModelID
-        call    dwFunction
-        mov     bReturn, al
-        add     esp, 4
-    }
+    using func_t = decltype(bReturn) (__cdecl*)(decltype(ModelID));
+bReturn =     reinterpret_cast<func_t>(dwFunction)(ModelID);
     // clang-format on
     return bReturn;
 }
@@ -394,13 +349,8 @@ bool CModelInfoSA::IsBmx()
     DWORD ModelID = m_dwModelID;
     bool  bReturn = false;
     // clang-format off
-    __asm
-    {
-        push    ModelID
-        call    dwFunction
-        mov     bReturn, al
-        add     esp, 4
-    }
+    using func_t = decltype(bReturn) (__cdecl*)(decltype(ModelID));
+bReturn =     reinterpret_cast<func_t>(dwFunction)(ModelID);
     // clang-format on
     return bReturn;
 }
@@ -411,13 +361,8 @@ bool CModelInfoSA::IsTrailer()
     DWORD ModelID = m_dwModelID;
     bool  bReturn = false;
     // clang-format off
-    __asm
-    {
-        push    ModelID
-        call    dwFunction
-        mov     bReturn, al
-        add     esp, 4
-    }
+    using func_t = decltype(bReturn) (__cdecl*)(decltype(ModelID));
+bReturn =     reinterpret_cast<func_t>(dwFunction)(ModelID);
     // clang-format on
     return bReturn;
 }
@@ -511,12 +456,8 @@ uint CModelInfoSA::GetAnimFileIndex()
     DWORD dwThis = (DWORD)m_pInterface;
     uint  uiReturn = 0;
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        call    dwFunc
-        mov     uiReturn, eax
-    }
+    using func_t = decltype(uiReturn) (__thiscall*)(decltype(dwThis) );
+uiReturn =     reinterpret_cast<func_t>(dwFunc)(dwThis);
     // clang-format on
     return uiReturn;
 }
@@ -976,13 +917,8 @@ CBoundingBox* CModelInfoSA::GetBoundingBox()
     DWORD         ModelID = m_dwModelID;
     CBoundingBox* dwReturn = 0;
     // clang-format off
-    __asm
-    {
-        push    ModelID
-        call    dwFunc
-        add     esp, 4
-        mov     dwReturn, eax
-    }
+    using func_t = decltype(dwReturn) (__cdecl*)(decltype(ModelID));
+dwReturn =     reinterpret_cast<func_t>(dwFunc)(ModelID);
     // clang-format on
     return dwReturn;
 }
@@ -1808,11 +1744,8 @@ void CModelInfoSA::RemoveRef(bool bRemoveExtraGTARef)
         if (pInterface && pInterface->usNumberOfRefs > 1)
         {
             DWORD dwFunction = FUNC_RemoveRef;
-            _asm
-            {
-                mov     ecx, pInterface
-                call    dwFunction
-            }
+            using func_t = void (__thiscall*)(decltype(pInterface) );
+    reinterpret_cast<func_t>(dwFunction)(pInterface);
         }
     }
 
@@ -3484,11 +3417,8 @@ bool CModelInfoSA::ForceUnload()
     uint  uiLimit = 100;
     while (pInterface->usNumberOfRefs > 0 && uiLimit--)
     {
-        _asm
-        {
-            mov     ecx, pInterface
-            call    dwFunction
-        }
+        using func_t = void (__thiscall*)(decltype(pInterface) );
+    reinterpret_cast<func_t>(dwFunction)(pInterface);
     }
 
     if (pInterface->usNumberOfRefs > 0 || pInterface->pRwObject != nullptr)

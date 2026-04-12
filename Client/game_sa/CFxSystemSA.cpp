@@ -44,11 +44,8 @@ void CFxSystemSA::PlayAndKill()
     DWORD dwThis = (DWORD)m_pInterface;
     DWORD dwFunc = FUNC_FxSystem_c__PlayAndKill;
     // clang-format off
-    __asm
-    {
-        mov     ecx, dwThis
-        call    dwFunc
-    }
+    using func_t = void (__thiscall*)(decltype(dwThis) );
+    reinterpret_cast<func_t>(dwFunc)(dwThis);
     // clang-format on
 }
 
